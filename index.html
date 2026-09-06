@@ -3,14 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="nova-build" content="index-nkXkpAYV.js" />
     <title>NOVA — AI Growth & Cybersecurity Operator</title>
     <link rel="icon" type="image/png" href="https://pgkubmdcrcnmwqndgqpf.supabase.co/storage/v1/object/public/nova-app/logo-nova.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script type="module" crossorigin src="https://pgkubmdcrcnmwqndgqpf.supabase.co/storage/v1/object/public/nova-app/assets/index-BIyly3oZ.js"></script>
+    <script type="module" crossorigin src="https://pgkubmdcrcnmwqndgqpf.supabase.co/storage/v1/object/public/nova-app/assets/index-nkXkpAYV.js"></script>
     <link rel="stylesheet" crossorigin href="https://pgkubmdcrcnmwqndgqpf.supabase.co/storage/v1/object/public/nova-app/assets/index-1RHaolmA.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      /* Auto-mise à jour : recharge l'onglet dès qu'une nouvelle version est déployée */
+      (function () {
+        var BUILD = document.querySelector('meta[name="nova-build"]').getAttribute('content');
+        var SB = 'https://pgkubmdcrcnmwqndgqpf.supabase.co';
+        var KEY = 'sb_publishable_2qZ4a97slQqRBWiqM42beQ_xKkODBpA';
+        setInterval(function () {
+          fetch(SB + '/rest/v1/nova_settings?id=eq.org&select=data', {
+            headers: { apikey: KEY, Authorization: 'Bearer ' + KEY },
+            cache: 'no-store'
+          })
+            .then(function (r) { return r.json(); })
+            .then(function (rows) {
+              var h = rows && rows[0] && rows[0].data && rows[0].data.buildHash;
+              if (h && h !== BUILD) location.reload();
+            })
+            .catch(function () {});
+        }, 30000);
+      })();
+    </script>
   </body>
 </html>
